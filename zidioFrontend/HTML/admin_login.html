@@ -104,7 +104,7 @@
 </head>
 <body>
   <div class="login-container">
-    <form action="/HTML/dashboard.html">       
+    <form action="/ZidioConnect_Project-main/zidioFrontend/HTML/dashboard.html">       
     <h2>Admin Login</h2>
     <form id="loginForm" onsubmit="return validateLogin(event)">
       <input type="text" id="username" placeholder="Username" required />
@@ -137,7 +137,7 @@
 
       if (username === 'admin' && password === 'admin123') {
         alert('Login successful!');
-        window.location.href = '/admin-dashboard.html';
+        window.location.href = '/ZidioConnect_Project-main/zidioFrontend/HTML/dashboard.html';
       } else {
         document.getElementById('errorMsg').textContent = 'Invalid username or password';
       }
