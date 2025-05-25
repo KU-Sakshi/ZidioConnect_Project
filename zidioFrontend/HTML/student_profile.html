@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Profile - JobPortal</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      color: #2c3e50;
+    }
+    a {
+      color: #2a9d8f;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto 60px;
+      width: 90%;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 25px 30px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    header.site-header {
+      background-color: #1d3557 !important;
+    }
+    header.site-header .logo {
+      color: #f1faee !important;
+    }
+    header.site-header .main-nav a {
+      color: #a8dadc !important;
+    }
+    header.site-header .main-nav a:hover {
+      color: #457b9d !important;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 5px;
+      display: block;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #2a9d8f;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .form-row {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .form-row > div {
+      flex: 1 1 48%;
+    }
+    button {
+      align-self: flex-start;
+      padding: 10px 20px;
+      font-weight: 700;
+      border: none;
+      background-color: #2a9d8f;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #1f6f7a;
+    }
+    /* Document upload */
+    .upload-section {
+      margin-top: 35px;
+      padding-top: 20px;
+      border-top: 2px solid #dde3e8;
+    }
+    .upload-section h2 {
+      margin-bottom: 20px;
+      color: #264653;
+      font-weight: 700;
+    }
+    .upload-label {
+      display: inline-block;
+      background-color: #264653;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .upload-label:hover {
+      background-color: #1f3650;
+    }
+    input[type="file"] {
+      display: none;
+    }
+    .uploaded-files {
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 8px;
+    }
+    .success-message {
+      display: none;
+      color: #2a9d8f;
+      font-weight: 700;
+      margin-top: 12px;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      .form-row > div {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/HTML/student_dashboard.html" class="student-link">Student Dashboard</a></li>
+          <li><a href="/index.html" class="logo">Log Out</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container" role="main">
+      <h1>Your Profile</h1>
+      <form id="profile-form" novalidate>
+        <div class="form-row">
+          <div>
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required placeholder="John" />
+          </div>
+          <div>
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required placeholder="Doe" />
+          </div>
+        </div>
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="john.doe@example.com" />
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="+1234567890" />
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" placeholder="City, Country" />
+        <label for="bio">Short Bio</label>
+        <textarea id="bio" name="bio" placeholder="Tell us about yourself..."></textarea>
+
+        <button type="submit">Save Profile</button>
+      </form>
+
+      <section class="upload-section" aria-label="Document uploads">
+        <h2>Upload Documents</h2>
+        <label class="upload-label" for="resumeUpload">Upload Resume (PDF, DOC)</label>
+        <input type="file" id="resumeUpload" name="resumeUpload" accept=".pdf, .doc, .docx" />
+        <div id="resume-file-name" class="uploaded-files" aria-live="polite"></div>
+
+        <label class="upload-label" for="portfolioUpload">Upload Portfolio (PDF, DOC, ZIP)</label>
+        <input type="file" id="portfolioUpload" name="portfolioUpload" accept=".pdf, .doc, .docx, .zip" />
+        <div id="portfolio-file-name" class="uploaded-files" aria-live="polite"></div>
+
+        <div class="success-message" id="uploadSuccessMessage">Files uploaded successfully!</div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const profileForm = document.getElementById('profile-form');
+    const resumeInput = document.getElementById('resumeUpload');
+    const portfolioInput = document.getElementById('portfolioUpload');
+    const resumeFileNameDisplay = document.getElementById('resume-file-name');
+    const portfolioFileNameDisplay = document.getElementById('portfolio-file-name');
+    const uploadSuccessMessage = document.getElementById('uploadSuccessMessage');
+
+    // Display selected file names for resume and portfolio
+    resumeInput.addEventListener('change', () => {
+      if (resumeInput.files.length > 0) {
+        resumeFileNameDisplay.textContent = `Selected file: ${resumeInput.files[0].name}`;
+        uploadSuccessMessage.style.display = 'none';
+      } else {
+        resumeFileNameDisplay.textContent = '';
+      }
+    });
+
+    portfolioInput.addEventListener('change', () => {
+      if (portfolioInput.files.length > 0) {
+        portfolioFileNameDisplay.textContent = `Selected file: ${portfolioInput.files[0].name}`;
+        uploadSuccessMessage.style.display = 'none';
+      } else {
+        portfolioFileNameDisplay.textContent = '';
+      }
+    });
+
+    profileForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!profileForm.checkValidity()) {
+        profileForm.reportValidity();
+        return;
+      }
+      
+      // For demonstration, simulate save
+      uploadSuccessMessage.textContent = 'Profile saved successfully!';
+      uploadSuccessMessage.style.color = '#2a9d8f';
+      uploadSuccessMessage.style.display = 'block';
+
+      // Reset file name displays
+      resumeFileNameDisplay.textContent = '';
+      portfolioFileNameDisplay.textContent = '';
+      profileForm.reset();
+    });
+  </script>
+</body>
+</html>
